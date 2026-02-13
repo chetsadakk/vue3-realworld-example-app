@@ -3,7 +3,7 @@ name: deploy vue
 on:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   deploy-app:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: build the code
         run: |
@@ -36,6 +36,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER_NAME }}
           key: ${{ secrets.SSH_KEY }}
-          source: "./dist/*"
-          target: "/var/www/html"
+          source: './dist/*'
+          target: /var/www/html
           strip_components: 1
